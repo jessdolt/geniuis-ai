@@ -67,9 +67,10 @@ const routes = [
 
 interface SidebarProps {
   apiLimitCount: number
+  isPro: boolean
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ apiLimitCount }) => {
+const Sidebar: React.FC<SidebarProps> = ({ apiLimitCount, isPro = false }) => {
   const pathname = usePathname()
   return (
     <div className="space-y-4 py-4 flex flex-col h-full text-white bg-[#111827]">
@@ -104,7 +105,7 @@ const Sidebar: React.FC<SidebarProps> = ({ apiLimitCount }) => {
         </div>
       </div>
 
-      <FreeCounter apiLimitCount={apiLimitCount} />
+      <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   )
 }
