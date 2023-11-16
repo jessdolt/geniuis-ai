@@ -14,6 +14,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import { usePathname } from "next/navigation"
+import FreeCounter from "./free-counter"
 
 const montserrat = Montserrat({
   weight: "600",
@@ -64,9 +65,12 @@ const routes = [
   },
 ]
 
-const Sidebar = () => {
-  const pathname = usePathname()
+interface SidebarProps {
+  apiLimitCount: number
+}
 
+const Sidebar: React.FC<SidebarProps> = ({ apiLimitCount }) => {
+  const pathname = usePathname()
   return (
     <div className="space-y-4 py-4 flex flex-col h-full text-white bg-[#111827]">
       <div className="px-3 py-2 flex-1">
@@ -99,6 +103,8 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
+
+      <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   )
 }

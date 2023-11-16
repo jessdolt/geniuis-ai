@@ -1,6 +1,6 @@
 "use client"
 import { Heading } from "@/components/heading"
-import { Image, MessageSquare } from "lucide-react"
+import { MessageSquare, Image as ImageIcon, Download } from "lucide-react"
 import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -16,6 +16,8 @@ import Loader from "@/components/loader"
 import { cn } from "@/lib/utils"
 import UserAvatar from "@/components/user-avatar"
 import BotAvatar from "@/components/bot-avatar"
+import Image from "next/image"
+
 import {
   Select,
   SelectContent,
@@ -23,11 +25,13 @@ import {
   SelectTrigger,
 } from "@/components/ui/select"
 import { SelectValue } from "@radix-ui/react-select"
+import { Card, CardFooter } from "@/components/ui/card"
+import { useProModal } from "@/hooks/user-pro-modal"
 
 const ImagePage = () => {
   const router = useRouter()
   const [images, setImages] = useState<string[]>([])
-
+  const { onOpen } = useProModal()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,8 +52,10 @@ const ImagePage = () => {
 
       setImages(urls)
       form.reset()
-    } catch (e) {
-      console.log(e)
+    } catch (e: any) {
+      if (e?.response?.status === 403) {
+        onOpen()
+      }
     } finally {
       router.refresh()
     }
@@ -60,7 +66,7 @@ const ImagePage = () => {
       <Heading
         title="Image Generation"
         description="Turn your prompt into an image"
-        icon={Image}
+        icon={ImageIcon}
         iconColor="text-pink-500"
         bgColor="bg-pink-500/10"
       />
@@ -165,7 +171,25 @@ const ImagePage = () => {
           <Empty label="No images generated." />
         )}
 
-        <div>Images will be rendered here</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+          {images.map((src) => (
+            <Card className="rounded-lg overflow-hidden" key={src}>
+              <div className="relative aspect-square">
+                <Image src={src} alt="Image" fill={true} />
+              </div>
+              <CardFooter className="p-2">
+                <Button
+                  onClick={() => window.open(src)}
+                  variant="secondary"
+                  className="w-full"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Download
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   )
