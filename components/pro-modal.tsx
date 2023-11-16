@@ -113,6 +113,7 @@ const ProModal = () => {
             size="lg"
             className="w-full"
             onClick={onSubscribe}
+            disabled={loading}
           >
             Upgrade <Zap className="w-4 h-4 ml-2 fill-white" />
           </Button>
