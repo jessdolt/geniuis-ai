@@ -27,6 +27,7 @@ import {
 import { SelectValue } from "@radix-ui/react-select"
 import { Card, CardFooter } from "@/components/ui/card"
 import { useProModal } from "@/hooks/user-pro-modal"
+import toast from "react-hot-toast"
 
 const ImagePage = () => {
   const router = useRouter()
@@ -55,6 +56,8 @@ const ImagePage = () => {
     } catch (e: any) {
       if (e?.response?.status === 403) {
         onOpen()
+      } else {
+        toast.error("Something went wrong.")
       }
     } finally {
       router.refresh()

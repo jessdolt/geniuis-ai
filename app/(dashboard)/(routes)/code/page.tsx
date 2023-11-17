@@ -18,6 +18,7 @@ import UserAvatar from "@/components/user-avatar"
 import BotAvatar from "@/components/bot-avatar"
 import ReactMarkdown from "react-markdown"
 import { useProModal } from "@/hooks/user-pro-modal"
+import toast from "react-hot-toast"
 
 const CodePage = () => {
   const router = useRouter()
@@ -50,6 +51,8 @@ const CodePage = () => {
     } catch (e: any) {
       if (e?.response?.status === 403) {
         onOpen()
+      } else {
+        toast.error("Something went wrong.")
       }
     } finally {
       router.refresh()

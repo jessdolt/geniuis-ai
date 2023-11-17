@@ -14,6 +14,7 @@ import axios from "axios"
 import Empty from "@/components/empty"
 import Loader from "@/components/loader"
 import { useProModal } from "@/hooks/user-pro-modal"
+import toast from "react-hot-toast"
 
 const MusicPage = () => {
   const router = useRouter()
@@ -38,6 +39,8 @@ const MusicPage = () => {
     } catch (e: any) {
       if (e?.response?.status === 403) {
         onOpen()
+      } else {
+        toast.error("Something went wrong.")
       }
     } finally {
       router.refresh()
