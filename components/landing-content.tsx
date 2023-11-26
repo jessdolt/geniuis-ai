@@ -11,7 +11,7 @@ const testimonials = [
       "https://scontent.fmnl30-2.fna.fbcdn.net/v/t39.30808-6/356081958_3651587651738267_6914317619796272185_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEbtRUWU4gG4V080NUn_ozdR3hKB5xXsDNHeEoHnFewM1U9n77A-nJmjVKjcWxwRWhQXm_GAvXh_AHy6CyQrXJT&_nc_ohc=Nm9O2_nCS-oAX8ZLOIY&_nc_oc=AQmTP6n3tsSt6dzacmuUSS6z22UDufOn9RRsOqvMkFFuiWpwAu0yRXtXbHN-r8uyKTw&_nc_ht=scontent.fmnl30-2.fna&oh=00_AfD93bEBEU8xp-AuHhTKvgsKMKgf4hkSK7dLcl4tcLuDhw&oe=655B48B6",
     title: "Platform Support Associate",
     description:
-      "This app is a game-changer. Efficient, user-friendly, and packed with powerful features! Sarap pa ng Developer 🤤❤️",
+      "This app is a game-changer. Efficient, user-friendly, and packed with powerful features!",
   },
   {
     name: "Gian",
