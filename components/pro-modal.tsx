@@ -70,6 +70,7 @@ const ProModal = () => {
 
       window.location.href = response.data.url
     } catch (e: any) {
+      console.log("error here")
       console.log(e, "STRIPE_CLIENT_ERROR")
     } finally {
       setLoading(false)
